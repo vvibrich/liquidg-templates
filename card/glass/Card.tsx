@@ -1,42 +1,33 @@
 import * as React from "react";
 import clsx from "clsx";
 
-export type CardVariant = "glass" | "frosted";
-
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Variante de estilo do card.
-   * @default "glass"
-   */
-  variant?: CardVariant;
-
-  /**
-   * Define se o card terá sombra mais forte.
+   * Controla a intensidade da sombra (vidro mais "flutuante").
    * @default false
    */
   elevated?: boolean;
 }
 
 /**
- * Card no estilo Liquid Glass
+ * Card estilo Liquid Glass
  */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant = "glass", elevated = false, ...props }, ref) => {
+  ({ className, elevated = false, ...props }, ref) => {
     const base =
-      "relative overflow-hidden rounded-2xl border border-glass-border bg-glass-grad " +
-      "backdrop-blur-xs text-glass-ink transition-shadow";
+      "relative flex flex-col items-center justify-center " +
+      "rounded-[2rem] border border-white/20 " +
+      "bg-white/10 backdrop-blur-2xl " + // fundo translúcido com blur mais forte
+      "text-white/90 transition-shadow duration-300";
 
-    const variants: Record<CardVariant, string> = {
-      glass: "shadow-glass",
-      frosted: "bg-white/10 border-white/20 backdrop-blur-md",
-    };
-
-    const elevation = elevated ? "shadow-xl" : "";
+    const elevation = elevated
+      ? "shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+      : "shadow-[0_4px_16px_rgba(0,0,0,0.15)]";
 
     return (
       <div
         ref={ref}
-        className={clsx(base, variants[variant], elevation, className)}
+        className={clsx(base, elevation, className)}
         {...props}
       />
     );
