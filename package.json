@@ -1,0 +1,13 @@
+{
+  "name": "liquidg-templates",
+  "version": "1.0.0",
+  "description": "Biblioteca de **componentes Liquid Glass (Apple style)** para React + Tailwind.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
